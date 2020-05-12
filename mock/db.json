@@ -1,0 +1,52 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "title": "Pair Programming Session (Title of the event)",
+      "date": "MM/DD/YYYY hh:mm",
+      "city": "Leipzig",
+      "address": "Demmeringstraße 1",
+      "languages": [1],
+      "details": "",
+      "level": "beginners",
+      "hostId": 1
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "age": 23,
+      "img": "",
+      "gender": "female",
+      "profession": "student",
+      "codingSkills": "newbie",
+      "pLanguages": "Javascript"
+    }
+  ],
+  "library": [
+    {
+      "template": "Vue",
+      "challenges": [
+        {
+          "id": 1,
+          "category": "kata",
+          "url": "https://codewars.com"
+        }
+      ]
+    }
+  ],
+  "job-exchange": [
+    {
+      "id": 1,
+      "position": "junior",
+      "company": "CCL",
+      "url": "https://codecampleipzig.com"
+    }
+  ],
+  "languages": [
+    {
+      "1": "Javascript",
+      "2": "Java"
+    }
+  ]
+}
