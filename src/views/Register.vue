@@ -2,13 +2,14 @@
   <div>
     <h1>Register</h1>
     <div class="avatar-preview">
-      <p>Preview</p>
+      <img v-if="avatarURL" :src="avatarURL" />
+      <p v-else>Preview</p>
     </div>
     <form @submit.prevent="submit">
       <label class="file-upload">
         Upload Avatar
-        <input @change="fileSelected" type="file" />
-      </label>
+        <input @change="fileSelected" type="file"
+      /></label>
       <input
         v-model="user.username"
         type="text"
@@ -43,7 +44,13 @@ export default {
         email: "",
         password: "",
       },
+      avatar: null,
     };
+  },
+  computed: {
+    avatarURL() {
+      return this.avatar ? window.URL.createObjectURL(this.avatar) : null;
+    },
   },
   methods: {
     fileSelected(event) {
@@ -52,10 +59,9 @@ export default {
         return;
       }
 
-      //set
-      this.avatat = event.target.files[0];
+      // Set avatar to selected file
+      this.avatar = event.target.files[0];
     },
-
     async submit() {
       try {
         await this.$store.dispatch("register", this.user);
@@ -81,31 +87,33 @@ export default {
 }
 
 .file-upload {
-  font-size: 1rem;
-  -webkit-appearance: none;
-  -moz-appearnce: none;
-  border: 1px solid lightgray;
+  border: 1px solid lightgrey;
   color: grey;
-  outline: none;
   width: auto;
   cursor: pointer;
   padding: 0.5rem 2rem;
-  font-family: inherit;
   border-radius: 3px;
   font-weight: 500;
-  margin: 5rem;
+  margin-bottom: 1rem;
   display: inline-block;
 }
 
 .avatar-preview {
-  width: 100px;
-  height: 100px;
-  border: 1px solid lightgray;
+  width: 200px;
+  height: 200px;
+  border: 1px solid lightgrey;
   color: grey;
   margin: 0.8rem auto;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.avatar-preview img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
 }
 </style>

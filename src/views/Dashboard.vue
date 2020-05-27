@@ -44,9 +44,10 @@ export default {
 </script>
 
 <style scoped>
-.avatar {
-  width: 100px;
-  height: 100px;
+img.avatar {
+  width: 400px;
+  height: 400px;
   border-radius: 50%;
+  object-fit: cover;
 }
 </style>
