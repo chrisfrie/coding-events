@@ -1,6 +1,8 @@
 <template>
   <div>
     <h1>Dashboard</h1>
+    <img v-if="avatarURL" :src="avatarURL" class="avatar" />
+    <p>{{ $store.state.userData.user.username }}</p>
     <EventCard
       v-for="event in events"
       :key="event.id"
@@ -22,10 +24,29 @@ export default {
       events: [],
     };
   },
+  computed: {
+    avatarURL() {
+      // Check if logged in
+      const userData = this.$store.state.userData;
+      if (!userData) return null;
+
+      // Check if there's a profile
+      const profile = userData.user.profile;
+      if (!profile) return null;
+
+      return process.env.VUE_APP_UPLOAD_URL + profile.avatar.url;
+    },
+  },
   async created() {
     this.events = (await getEvents()).data;
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+</style>

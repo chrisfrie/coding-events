@@ -7,7 +7,7 @@
     <form @submit.prevent="submit">
       <label class="file-upload">
         Upload Avatar
-        <input type="file" />
+        <input @change="fileSelected" type="file" />
       </label>
       <input
         v-model="user.username"
@@ -46,10 +46,24 @@ export default {
     };
   },
   methods: {
+    fileSelected(event) {
+      // Check if a file was selected
+      if (event.target.files.length == 0) {
+        return;
+      }
+
+      //set
+      this.avatat = event.target.files[0];
+    },
+
     async submit() {
       try {
         await this.$store.dispatch("register", this.user);
         this.$router.push("/");
+
+        if (this.avatar) {
+          await this.$store.dispatch("createProfile", this.avatar);
+        }
       } catch {
         this.$store.dispatch("pushNotification", {
           type: "error",
