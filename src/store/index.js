@@ -54,7 +54,7 @@ export default new Vuex.Store({
     async register(context, user) {
       // Make a POST request to /auth/local
       const res = await axios.post(
-        process.env.VUE_APP_API_URL + "/auth/local/register",
+        process.env.VUE_APP_API_URL + "auth/local/register",
         user
       );
 
